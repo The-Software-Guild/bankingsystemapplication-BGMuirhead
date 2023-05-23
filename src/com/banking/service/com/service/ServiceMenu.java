@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.RoundingMode;
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
@@ -85,10 +86,11 @@ public class ServiceMenu implements Service {
 					int day = Integer.parseInt(split[0]);
 					int month = Integer.parseInt(split[1]);
 					int year = Integer.parseInt(split[2]);
+					LocalDate dob2 = LocalDate.of(year, month, day);
 					dobFlag = true;
 
 					Customer c = new Customer(newCustomerID, name, age, mobileNumber, passportNumber);
-					LocalDate dob2 = LocalDate.of(year, month, day);
+					
 					c.setDob(dob2);
 
 					customers.add(c);
@@ -97,7 +99,11 @@ public class ServiceMenu implements Service {
 
 				validFlag = true;
 
-			} catch (NumberFormatException nfe) {
+			} catch(DateTimeException dte)
+			{
+				System.out.println("Error formating DOB, please try again");
+			}
+			catch (NumberFormatException nfe) {
 				System.out.println("A number format error has occured, please try again");
 
 			}
@@ -416,52 +422,54 @@ public class ServiceMenu implements Service {
 	{
 		
 		
+		
 		boolean validFlag = false;
 		boolean choiceFlag = false;
 		int input = 0;
 		do {
 			try {
 
-				if (!choiceFlag) {
-					System.out.println(
-							"Please select if you would like to retrieve from flat file(0), retrieve from database(1) or enter any key to exit");
-					input = Integer.parseInt(sc.nextLine());
-					choiceFlag = true;
-				}
-
-				switch (input) {
-					case 0: {
-						if(customers.size()!=0)
-						{
-							System.out.println("Can only retrieve before adding customer");
-							return;
-						}
-						daoInterface dao = new FileStorageDao();
-						List<Customer> cs = dao.retrieveAllCustomers();
+//				if (!choiceFlag) {
+//					System.out.println(
+//							"Please select if you would like to retrieve from flat file(0), retrieve from database(1) or enter any key to exit");
+//					input = Integer.parseInt(sc.nextLine());
+//					choiceFlag = true;
+//				}
+//
+//				switch (input) {
+//					case 0: {
+//						if(customers.size()!=0)
+//						{
+//							System.out.println("Can only retrieve before adding customer");
+//							return;
+//						}
+//						daoInterface dao = new FileStorageDao();
+//						List<Customer> cs = dao.retrieveAllCustomers();
+//						
+//						if(cs==null)
+//						{
+//							return;
+//						}
+//						
+//						int id = cs.get(cs.size()-1).getId();
+//						customerID = id; 
+//						customers = cs;
+//						
+//						
+//						System.out.println("Customers Imported Successfully");
+//						printAllCustomers();
+//						return;
+//	
+//					}
+//					case 1: {
 						
-						if(cs==null)
-						{
-							return;
-						}
-						
-						int id = cs.get(cs.size()-1).getId();
-						customerID = id; 
-						customers = cs;
-						
-						
-						System.out.println("Customers Imported Successfully");
-						printAllCustomers();
-						return;
-	
-					}
-					case 1: {
-						
-						if(customers.size()!=0)
-						{
-							System.out.println("Can only retrieve before adding customer");
-							return;
-						}
+//						if(customers.size()!=0)
+//						{
+//							System.out.println("Can only retrieve before adding customer");
+//							return;
+//						}
 						daoInterface dao = new DatabaseStorageDao();
+						dao.saveAllCustomers(customers); // save so new customers do not get deleted
 						List<Customer> cs = dao.retrieveAllCustomers();
 						
 						if(cs==null)
@@ -476,13 +484,14 @@ public class ServiceMenu implements Service {
 						
 						System.out.println("Customers Imported Successfully");
 						printAllCustomers();
+						System.out.println();
 						return;
 	
-					}
+//					}
 
-				}
-
-				validFlag = true;
+//				}
+//
+//				validFlag = true;
 
 			}
 

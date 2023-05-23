@@ -9,7 +9,10 @@ public class Controller {
 
 	public static void main(String[] args) {
 		
+		
 		Service menu = new ServiceMenu();
+		Scanner sc = new Scanner(System.in);
+		menu.showAllCustomers(sc); // populate the list of customers so that there arent clashes in customer ID
 		
 		String menuText ="1. Create New Customer Data\r\n" +
                 "2. Assign a Bank Account to a Customer\r\n" +
@@ -22,7 +25,8 @@ public class Controller {
 
         System.out.println(menuText);
         int x=0;
-        Scanner sc = new Scanner(System.in);
+        
+        
 
         while(x!=8)
         {
