@@ -8,13 +8,13 @@ import com.dto.Customer;
 
 public interface Service{
 	
-	void createCustomer(Scanner sc);
-	void assignBankAccount(Scanner sc);
-	void displayBalanceAndInterest(Scanner sc);
-	void sortData(Scanner sc);
-	void showAllCustomers(Scanner sc);
-	void persistCustomers(Scanner sc);
-	void searchCustomersByName(Scanner sc);
+	void createCustomer();
+	void assignBankAccount();
+	void displayBalanceAndInterest();
+	void sortData();
+	void showAllCustomers();
+	void persistCustomers();
+	void searchCustomersByName();
 	void printAllCustomers();
 
 	

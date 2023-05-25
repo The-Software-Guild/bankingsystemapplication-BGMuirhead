@@ -35,9 +35,10 @@ public class ServiceMenu implements Service {
 	//Map<Customer, BankAccount> customers = new TreeMap<>();
 	List<Customer> customers = new ArrayList<>();
 	int customerID = 99;
+	Scanner sc = new Scanner(System.in);
 
 	@Override
-	public void createCustomer(Scanner sc) {
+	public void createCustomer() {
 		String name = null, passportNumber = null;
 		int age = 0, mobileNumber = 0;
 		int newCustomerID = customerID + 1;
@@ -165,7 +166,7 @@ public class ServiceMenu implements Service {
 	}
 
 	@Override
-	public void assignBankAccount(Scanner sc) {
+	public void assignBankAccount() {
 		int type = 0, custID, tenure = 0;
 		int depositAmount = 0;
 		boolean idFlag = false, typeFlag = false, bankNameFlag = false, accNumFlag = false, bsbFlag = false,
@@ -330,7 +331,7 @@ public class ServiceMenu implements Service {
 	}
 
 	@Override
-	public void displayBalanceAndInterest(Scanner sc) {
+	public void displayBalanceAndInterest() {
 		int id = -1;
 		while (true) {
 			try {
@@ -372,7 +373,7 @@ public class ServiceMenu implements Service {
 	}
 
 	@Override
-	public void sortData(Scanner sc) {
+	public void sortData() {
 		int selection = -1;
 		while (true) {
 			try {
@@ -418,7 +419,7 @@ public class ServiceMenu implements Service {
 		}
 	}
 	@Override
-	public void showAllCustomers(Scanner sc)
+	public void showAllCustomers()
 	{
 		
 		
@@ -509,7 +510,7 @@ public class ServiceMenu implements Service {
 	}
 
 	@Override
-	public void persistCustomers(Scanner sc) {
+	public void persistCustomers() {
 
 		boolean validFlag = false;
 		boolean choiceFlag = false;
@@ -561,7 +562,7 @@ public class ServiceMenu implements Service {
 	}
 
 	@Override
-	public void searchCustomersByName(Scanner sc) {
+	public void searchCustomersByName() {
 		
 		System.out.println("Please enter the name to search for:");
 		String name = sc.nextLine();

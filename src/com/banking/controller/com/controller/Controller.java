@@ -12,7 +12,7 @@ public class Controller {
 		
 		Service menu = new ServiceMenu();
 		Scanner sc = new Scanner(System.in);
-		menu.showAllCustomers(sc); // populate the list of customers so that there arent clashes in customer ID
+		menu.showAllCustomers(); // populate the list of customers so that there arent clashes in customer ID
 		
 		String menuText ="1. Create New Customer Data\r\n" +
                 "2. Assign a Bank Account to a Customer\r\n" +
@@ -41,40 +41,40 @@ public class Controller {
                     switch(x){
                         case 1:{
                         	
-                        	menu.createCustomer(sc);
+                        	menu.createCustomer();
                             
                             break;
                         }
                         case 2:{
-                        	menu.assignBankAccount(sc);
+                        	menu.assignBankAccount();
                         	
                             break;
                         }
                         case 3:{
                         	///display interest
-                        	menu.displayBalanceAndInterest(sc);
+                        	menu.displayBalanceAndInterest();
                             break;
                         }
                         
                         case 4:{
                         	//sort data
-                        	menu.sortData(sc);
+                        	menu.sortData();
                             int j=4;
                             break;
                         }
                         case 5:{
                         	//persist data
-                            menu.persistCustomers(sc);
+                            menu.persistCustomers();
                             break;
                         }
                         case 6:{
                         	
-                        	menu.showAllCustomers(sc);
+                        	menu.showAllCustomers();
                         	
                             break;
                         }
                         case 7:{
-                        	menu.searchCustomersByName(sc);
+                        	menu.searchCustomersByName();
                             break;
                         }
                     }
